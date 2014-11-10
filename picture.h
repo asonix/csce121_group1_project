@@ -21,7 +21,6 @@ class Picture
 		
 		string get_location();
 		vector<string> get_tags();
-		Graph_lib::Image& get_image();
 		
 		void set_location(string loc);
 		void set_tags(string tag_string);

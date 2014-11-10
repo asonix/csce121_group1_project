@@ -16,6 +16,8 @@ using namespace Graph_lib;
 class Pic_window : Graph_lib :: Window
 {
 	public:
+		vector<Picture> pics;
+			
 		Pic_window(Point xy,int w,int h,const string& title);
 		
 		// --- Navigation -------------------------------------------------- //

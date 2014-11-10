@@ -34,6 +34,8 @@ Pic_window::Pic_window(Point xy,int w,int h,const string& title)
 	path_filename(Point(380,230),200,20,"File Name"),
 	path_tags(Point(380,260),200,20,"Tags")
 	{
+		init_extns();
+		pics = get_pictures("archive.txt");
 		Window::attach(quit_button);
 		Window::attach(gallery_button);
 		Window::attach(add_button);
@@ -51,6 +53,7 @@ void Pic_window::cb_quit(Address,Address pw)
 void Pic_window::quit()
 {
 	Window::hide();
+	output_archive("archive.txt",pics);
 }
 
 // Back1 Button
@@ -109,6 +112,8 @@ void Pic_window::gallery()
 	Window::attach(back1_button);
 	Window::attach(left_button);
 	Window::attach(right_button);
+
+	// attach image here
 }
 
 // Add
@@ -172,6 +177,11 @@ void Pic_window::download()
 	string s_url = url.get_string();
 	string s_url_filename = url_filename.get_string();
 	string s_url_tags = url_tags.get_string();
+	
+	try{
+		Picture p = download_picture(s_url,s_url_filename,s_url_tags);
+		pics.push_back(p);
+	} catch (...) {}
 }
 
 // Add

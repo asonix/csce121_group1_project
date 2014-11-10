@@ -17,7 +17,7 @@ Picture::Picture()
 Picture::Picture(string loc,string tag_string)
 {
 	location = loc;
-	tags = parse_string(tag_string,delc);
+	tags = (parse_string(tag_string,delc));
 }
 
 Picture::Picture(string loc,vector<string> tag_vector)
@@ -31,10 +31,6 @@ Picture::Picture(string loc,vector<string> tag_vector)
 
 string Picture::get_location() {return location;}
 vector<string> Picture::get_tags() {return tags;}
-Graph_lib::Image& Picture::get_image()
-{
-	return Graph_lib::Image{Point(100,100),location};
-}
 
 // ----------------------------------------------------------------------------
 // Modifiers 
