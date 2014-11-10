@@ -7,6 +7,7 @@
 #include "Window.h"
 #include "picture.h"
 #include "archive.h"
+#include "button.h"
 
 using namespace Graph_lib;
 
