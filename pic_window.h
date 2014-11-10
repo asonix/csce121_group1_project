@@ -34,7 +34,7 @@ class Pic_window : Graph_lib :: Window
 		
 		// --- Home Screen ------------------------------------------------- //
 		
-		
+		Text title_homescreen;
 		
 		Button gallery_button;
 		static void cb_gallery(Address,Address);
@@ -56,6 +56,9 @@ class Pic_window : Graph_lib :: Window
 		
 		// --- Add Screen -------------------------------------------------- //
 		
+		Text title_download;
+		Text title_path;
+		
 		Button download_button;
 		static void cb_download(Address, Address);
 		void download();
@@ -65,6 +68,9 @@ class Pic_window : Graph_lib :: Window
 		void addpic();
 		
 		In_box url,url_filename,url_tags,path,path_filename,path_tags;
+		
+		//--------------------------------------------------------------------//
+		
 		
 };
 

@@ -33,7 +33,7 @@ string Picture::get_location() {return location;}
 vector<string> Picture::get_tags() {return tags;}
 Graph_lib::Image& Picture::get_image()
 {
-	return Graph_lib::Image{Point(100,100),location};
+	/*return Graph_lib::Image{Point(100,100),location};*/
 }
 
 // ----------------------------------------------------------------------------

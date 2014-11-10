@@ -32,11 +32,20 @@ Pic_window::Pic_window(Point xy,int w,int h,const string& title)
 	url_tags(Point(80,260),200,20,"Tags"),
 	path(Point(380,200),200,20,"Full Path"),
 	path_filename(Point(380,230),200,20,"File Name"),
-	path_tags(Point(380,260),200,20,"Tags")
+	path_tags(Point(380,260),200,20,"Tags"),
+	
+	title_homescreen(Point(175,50),"AggieSnap"),
+	title_download(Point(100,170),"Download from web"),
+	title_path(Point(400,170),"Download from file")
+	
+	
 	{
 		Window::attach(quit_button);
 		Window::attach(gallery_button);
 		Window::attach(add_button);
+		
+		title_homescreen.set_font_size(50);
+		Window::attach(title_homescreen);
 	}
 
 // --- Navigation ---------------------------------------------------------- //
@@ -92,6 +101,9 @@ void Pic_window::back2()
 	Window::detach(path);
 	Window::detach(path_filename);
 	Window::detach(path_tags);
+	
+	Window::detach(title_download);
+	Window::detach(title_path);
 }
 
 // --- Home Screen --------------------------------------------------------- //
@@ -132,6 +144,12 @@ void Pic_window::add()
 	Window::attach(path);
 	Window::attach(path_filename);
 	Window::attach(path_tags);
+	
+	title_download.set_font_size(20);
+	title_path.set_font_size(20);
+	
+	Window::attach(title_download);
+	Window::attach(title_path);
 	
 }
 
