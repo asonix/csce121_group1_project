@@ -153,10 +153,10 @@ void Pic_window::gallery()									// 22 Lines
 	else if (current == 0)
 		current = 1;
 	if (current == 0)
-		del_button.hide();
+		rm_button(del_button);
 	if (tagged_images.size() < 2)
-	{	right_button.hide();
-		left_button.hide(); }
+	{	rm_button(right_button);
+		rm_button(left_button); }
 
 	gallery_filename.put(tagged_pics[current].get_location());
 	gallery_tags.put(tagged_pics[current].get_string_of_tags());
