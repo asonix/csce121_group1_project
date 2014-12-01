@@ -4,5 +4,5 @@ flag.gif,tamu,flag
 flag2.jpg,tamu,flag
 flag3.jpg,flag
 football.gif,football
-tux.png,tux,bmp
+tux.png,tux,png
 tux.bmp,tux,bmp
