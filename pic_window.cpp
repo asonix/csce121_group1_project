@@ -28,8 +28,8 @@ Pic_window::Pic_window(Point xy,int w,int h,const string& title)
 	gallery_button{Point(50,(y_max()/2)-100),400,400,"Gallery",cb_gallery},
 	add_button{Point(550,(y_max()/2)-100),400,400,"Add Picture",cb_add},
 
-	left_button{Point(0,(y_max()/2)-10),50,20,"< Left",cb_left},	// View
-	right_button{Point(x_max()-50,(y_max()/2)-10),50,20,"Right >",cb_right},
+	left_button{Point(0,(y_max()/2)-10),70,20,"< Left",cb_left},	// View
+	right_button{Point(x_max()-70,(y_max()/2)-10),70,20,"Right >",cb_right},
 	del_button{Point(x_max()/2,(y_max()-100)-10),50,20,"Delete",cb_del},
 	search_button{Point((x_max()/2)-150+275,50),30,20,"GO",cb_search},
 
@@ -37,8 +37,8 @@ Pic_window::Pic_window(Point xy,int w,int h,const string& title)
 	gallery_tags(Point(100,y_max()-60),200,20,"File Tags :"),
 	search_box(Point((x_max()/2)-150,50),250,20,"Search:"),
 
-	download_button{Point(300,300),80,20,"Download",cb_download},	// Add
-	addpic_button{Point(600,300),80,20,"Add Picture",cb_addpic},
+	download_button{Point(300,300),90,20,"Download",cb_download},	// Add
+	addpic_button{Point(600,300),90,20,"Add Picture",cb_addpic},
 
 	url(Point(280,200),200,20,"URL"),
 	url_filename(Point(280,230),200,20,"File Name"),
