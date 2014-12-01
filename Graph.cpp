@@ -14,6 +14,7 @@
 #include <FL/Fl_GIF_Image.H>
 #include <FL/Fl_JPEG_Image.H>
 #include <FL/Fl_PNG_Image.H>
+#include <FL/Fl_BMP_Image.H>
 #include "Graph.h"
 #include <cstring>
 
@@ -23,7 +24,7 @@ namespace Graph_lib {
 
 //------------------------------------------------------------------------------
 
-Shape::Shape() : 
+Shape::Shape() :
     lcolor(fl_color()),      // default color for lines and characters
     ls(0),                   // default style
     fcolor(Color::invisible) // no fill
@@ -106,7 +107,7 @@ void Lines::draw_lines() const
 
 // does two lines (p1,p2) and (p3,p4) intersect?
 // if se return the distance of the intersect point as distances from p1
-inline pair<double,double> line_intersect(Point p1, Point p2, Point p3, Point p4, bool& parallel) 
+inline pair<double,double> line_intersect(Point p1, Point p2, Point p3, Point p4, bool& parallel)
 {
     double x1 = p1.x;
     double x2 = p2.x;
@@ -160,7 +161,7 @@ void Polygon::add(Point p)
         if (line_segment_intersect(point(np-1),p,point(i-1),point(i),ignore))
             error("intersect in polygon");
     }
-    
+
 
     Closed_polyline::add(p);
 }
@@ -186,7 +187,7 @@ void Open_polyline::draw_lines() const
         fl_end_complex_polygon();
         fl_color(color().as_int());    // reset color
     }
-    
+
     if (color().visibility())
         Shape::draw_lines();
 }
@@ -198,7 +199,7 @@ void Closed_polyline::draw_lines() const
     Open_polyline::draw_lines();    // first draw the "open poly line part"
     // then draw closing line:
     if (color().visibility())
-        fl_line(point(number_of_points()-1).x, 
+        fl_line(point(number_of_points()-1).x,
         point(number_of_points()-1).y,
         point(0).x,
         point(0).y);
@@ -220,7 +221,7 @@ void draw_mark(Point xy, char c)
 void Marked_polyline::draw_lines() const
 {
     Open_polyline::draw_lines();
-    for (int i=0; i<number_of_points(); ++i) 
+    for (int i=0; i<number_of_points(); ++i)
         draw_mark(point(i),mark[i%mark.size()]);
 }
 
@@ -259,7 +260,7 @@ Point Circle::center() const
 
 void Circle::draw_lines() const
 {
-  	if (fill_color().visibility()) {	// fill
+    if (fill_color().visibility()) {	// fill
 		fl_color(fill_color().as_int());
 		fl_pie(point(0).x,point(0).y,r+r-1,r+r-1,0,360);
 		fl_color(color().as_int());	// reset color
@@ -403,8 +404,8 @@ bool can_open(const string& s)
 
 Suffix::Encoding get_encoding(const string& s)
 {
-    struct SuffixMap 
-    { 
+    struct SuffixMap
+    {
         const char*      extension;
         Suffix::Encoding suffix;
     };
@@ -412,6 +413,8 @@ Suffix::Encoding get_encoding(const string& s)
     static SuffixMap smap[] = {
         {".jpg",  Suffix::jpg},
         {".jpeg", Suffix::jpg},
+        {".png",  Suffix::png},
+        {".bmp",  Suffix::bmp},
         {".gif",  Suffix::gif},
     };
 
@@ -450,8 +453,11 @@ Image::Image(Point xy, string s, Suffix::Encoding e)
     case Suffix::gif:
         p = new Fl_GIF_Image(s.c_str());
         break;
-	case Suffix::png:
+    case Suffix::png:
         p = new Fl_PNG_Image(s.c_str());
+        break;
+    case Suffix::bmp:
+        p = new Fl_BMP_Image(s.c_str());
         break;
     default:    // Unsupported image encoding
         fn.set_label("unsupported file type \""+s+'\"');

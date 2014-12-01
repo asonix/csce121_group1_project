@@ -30,6 +30,10 @@ void init_extns()
 	extns.push_back(".JPEG");
 	extns.push_back(".gif");
 	extns.push_back(".GIF");
+	extns.push_back(".png");
+	extns.push_back(".PNG");
+	extns.push_back(".bmp");
+	extns.push_back(".BMP");
 	
 	invalid_chars.push_back('\\');
 	invalid_chars.push_back('/');
