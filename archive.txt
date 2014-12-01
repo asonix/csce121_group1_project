@@ -1,1 +1,6 @@
-nomorepictures.jpg,none
+nopictures.jpg,none
+tamu17.jpg,tamu
+flag.gif,tamu,flag
+flag2.jpg,tamu,flag
+flag3.jpg,flag
+football.gif,football

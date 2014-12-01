@@ -13,6 +13,7 @@
 
 #include <FL/Fl_GIF_Image.H>
 #include <FL/Fl_JPEG_Image.H>
+#include <FL/Fl_PNG_Image.H>
 #include "Graph.h"
 #include <cstring>
 
@@ -448,6 +449,9 @@ Image::Image(Point xy, string s, Suffix::Encoding e)
         break;
     case Suffix::gif:
         p = new Fl_GIF_Image(s.c_str());
+        break;
+	case Suffix::png:
+        p = new Fl_PNG_Image(s.c_str());
         break;
     default:    // Unsupported image encoding
         fn.set_label("unsupported file type \""+s+'\"');

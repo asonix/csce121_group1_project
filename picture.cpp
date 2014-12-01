@@ -17,7 +17,7 @@ Picture::Picture()
 Picture::Picture(string loc,string tag_string)
 {
 	location = loc;
-	tags = parse_string(tag_string,delc);
+	tags = (parse_string(tag_string,delc));
 }
 
 Picture::Picture(string loc,vector<string> tag_vector)
@@ -31,9 +31,15 @@ Picture::Picture(string loc,vector<string> tag_vector)
 
 string Picture::get_location() {return location;}
 vector<string> Picture::get_tags() {return tags;}
-Graph_lib::Image& Picture::get_image()
+string Picture::get_string_of_tags()
 {
-	return Graph_lib::Image{Point(100,100),location};
+	string out;
+	for (string s : get_tags())
+	{
+		out += s + ",";
+	}
+	out.pop_back();
+	return out;
 }
 
 // ----------------------------------------------------------------------------
@@ -69,13 +75,11 @@ vector<string> parse_string(string in, char del)
 {
 	vector<string> out;
 	string temp = "";
-	
 	if (in == "")
 	{
 		out.push_back("none");
 		return out;
 	}
-	
 	for (unsigned int i = 0; i<in.size(); ++i)
 	{
 		if (in[i] == del)
@@ -89,7 +93,6 @@ vector<string> parse_string(string in, char del)
 		}
 	}
 	out.push_back(temp);
-	
 	return out;
 }
 

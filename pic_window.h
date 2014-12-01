@@ -17,7 +17,19 @@ using namespace Graph_lib;
 class Pic_window : Graph_lib :: Window
 {
 	public:
+		vector<Picture> pics;
+		vector<Picture> tagged_pics;
 		Pic_window(Point xy,int w,int h,const string& title);
+		int current = 0;
+		vector<Image*> images;
+		vector<Image*> tagged_images;
+		string tag = "";
+		
+		Image background_home;
+		Image background_add_1;
+		Image background_add_2a;
+		Image background_add_2b;
+		Image background_add_3;
 		
 		// --- Navigation -------------------------------------------------- //
 		
@@ -35,7 +47,7 @@ class Pic_window : Graph_lib :: Window
 		
 		// --- Home Screen ------------------------------------------------- //
 		
-		
+		Text heading,names;
 		
 		Button gallery_button;
 		static void cb_gallery(Address,Address);
@@ -55,6 +67,19 @@ class Pic_window : Graph_lib :: Window
 		static void cb_left(Address,Address);
 		void left();
 		
+		Button del_button;
+		static void cb_del(Address,Address);
+		void del();
+		
+		Out_box gallery_filename;
+		Out_box gallery_tags;
+		In_box search_box;
+		
+		Button search_button;
+		static void cb_search(Address,Address);
+		void search();
+		
+		
 		// --- Add Screen -------------------------------------------------- //
 		
 		Button download_button;
@@ -66,7 +91,30 @@ class Pic_window : Graph_lib :: Window
 		void addpic();
 		
 		In_box url,url_filename,url_tags,path,path_filename,path_tags;
+		Out_box error_message;
+		Text file_text,web_text;
+		
+		// --- Mass Attach/Hide/Show functions ----------------------------- //
+		
+		void attach_all_widgets();
+		void attach_all_text();
+		
+		void massshow_home_screen();
+		void massshow_gallery_screen();
+		void massshow_add_screen();
+		
+		void masshide_home_screen();
+		void masshide_gallery_screen();
+		void masshide_add_screen();
 		
 };
+
+
+
+Image* get_image_pointer(string fn);
+void get_images_with_tag(vector<Picture> ps, vector<Picture>& tps, 
+		vector<Image*> is, vector<Image*>& os, vector<string> tag);
+void check_valid_input(string locin, string locout,
+						vector<Picture> pics,string& e);
 
 #endif
