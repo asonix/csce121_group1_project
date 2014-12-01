@@ -31,6 +31,16 @@ Picture::Picture(string loc,vector<string> tag_vector)
 
 string Picture::get_location() {return location;}
 vector<string> Picture::get_tags() {return tags;}
+string Picture::get_string_of_tags()
+{
+	string out;
+	for (string s : get_tags())
+	{
+		out += s + ",";
+	}
+	out.pop_back();
+	return out;
+}
 
 // ----------------------------------------------------------------------------
 // Modifiers 
@@ -65,13 +75,11 @@ vector<string> parse_string(string in, char del)
 {
 	vector<string> out;
 	string temp = "";
-	
 	if (in == "")
 	{
 		out.push_back("none");
 		return out;
 	}
-	
 	for (unsigned int i = 0; i<in.size(); ++i)
 	{
 		if (in[i] == del)
@@ -85,7 +93,6 @@ vector<string> parse_string(string in, char del)
 		}
 	}
 	out.push_back(temp);
-	
 	return out;
 }
 

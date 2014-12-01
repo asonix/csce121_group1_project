@@ -21,6 +21,7 @@ class Picture
 		
 		string get_location();
 		vector<string> get_tags();
+		string get_string_of_tags();
 		
 		void set_location(string loc);
 		void set_tags(string tag_string);

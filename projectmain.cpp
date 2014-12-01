@@ -9,7 +9,7 @@ int main()
 try {
 	if(H112 != 201401L)error("Error: incorrect std_lib_facilities_4.h version ",
 		  	   H112);
-	Pic_window win1(Point(100,100),600,600,"two lines");
+	Pic_window win1(Point(100,100),1000,800,"AggieSnap");
 	return gui_main();
 }
 catch(exception& e) {

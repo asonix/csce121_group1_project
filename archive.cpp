@@ -20,6 +20,7 @@
 
 string cwd = getcwd();
 vector<string> extns = vector<string>();
+vector<char> invalid_chars = vector<char>();
 
 void init_extns()
 {
@@ -27,6 +28,14 @@ void init_extns()
 	extns.push_back(".JPG");
 	extns.push_back(".jpeg");
 	extns.push_back(".JPEG");
+	extns.push_back(".gif");
+	extns.push_back(".GIF");
+	
+	invalid_chars.push_back('\\');
+	invalid_chars.push_back('/');
+	invalid_chars.push_back('*');
+	invalid_chars.push_back(' ');
+	
 }
 
 // ------------------------------------------------------------------------- //
@@ -107,7 +116,7 @@ Picture download_picture(string url, string filename, string tags)
 	return Picture(filename,tags);
 }
 
-void delete_picture(string p, vector<Picture>& a)
+void delete_picture(string p, vector<Picture>& a, vector<Picture>& b)
 {
 	system((string("rm gallery/") + p).c_str());	// Delete file
 	
@@ -115,6 +124,8 @@ void delete_picture(string p, vector<Picture>& a)
 	{
 		if (p == a[i].get_location())
 			a.erase(a.begin()+i);
+		if (i < b.size() && p == b[i].get_location())
+			b.erase(b.begin()+i);
 	}	
 }
 
@@ -130,6 +141,27 @@ string get_raw_filename(string url)
 		out.insert(out.begin(),c);
 		c = url[url.size()-1];
 		url.pop_back();
+	}
+	for (unsigned int i = 0; i<out.size(); ++i)
+	{
+		string temp = "";
+		if (out[i] == '%')
+		{
+			temp.push_back(out.at(i));
+			temp.push_back(out.at(i+1));
+			temp.push_back(out.at(i+2));
+			cout << temp << endl;
+			out.replace(i,3,get_html_char(temp));
+		}
+	}
+	for (unsigned int i = 0; i<out.size(); ++i)
+	{
+		if (out[i] == ' ')
+		{
+			out.insert(out.begin()+i,'\\');
+			i++;
+			cout << "yes";
+		}
 	}
 	return out;
 }
@@ -191,8 +223,8 @@ Picture add_from_file(string full_path,string new_name,string tags)
 
 string get_proper(string s)
 {
-	string n = "/cygdrive/c";
-	for (unsigned int i = 2; i<s.size(); ++i)
+	string n = "";
+	for (unsigned int i = 0; i<s.size(); ++i)
 	{
 		if (s[i] == ' ')
 			n += "\\ ";
@@ -203,6 +235,28 @@ string get_proper(string s)
 	}
 	//cout << s;
 	return n;
+}
+
+string get_html_char(string s)
+{
+	cout << s.size();
+	int a = atoi(s.substr(1).c_str());
+	cout << a;
+	switch(a)
+	{
+		case (20): return " ";
+		case (26): return "&";
+		default: return "";
+	}
+}
+
+int string_to_int(string in)
+{
+	stringstream s;
+	s << in;
+	int a;
+	s >> a;
+	return a;
 }
 
 /* ------------------------------------------------------------------------- //
