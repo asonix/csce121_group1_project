@@ -381,6 +381,8 @@ struct Image : Shape {
     ~Image() { delete p; }
     void draw_lines() const;
     void set_mask(Point xy, int ww, int hh) { w=ww; h=hh; cx=xy.x; cy=xy.y; }
+    int get_height();
+    int get_width();
 private:
     int w,h;  // define "masking box" within image relative to position (cx,cy)
     int cx,cy; 

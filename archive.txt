@@ -4,5 +4,7 @@ flag.gif,tamu,flag
 flag2.jpg,tamu,flag
 flag3.jpg,flag
 football.gif,football
-tux.png,tux,png
-tux.bmp,tux,bmp
+parliament.jpg,bruh
+space.jpg,space
+water.png,png,transparent
+linux.bmp,bmp,tux

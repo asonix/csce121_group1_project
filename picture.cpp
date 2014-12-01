@@ -38,7 +38,8 @@ string Picture::get_string_of_tags()
 	{
 		out += s + ",";
 	}
-	out.pop_back();
+  if (out.size() > 0)
+    out.pop_back();
 	return out;
 }
 

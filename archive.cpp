@@ -60,7 +60,9 @@ vector<Picture> get_pictures(string infile)
 		tags = parse_string(instring,delc);
 		loc = tags[0];
 		tags.erase(tags.begin());
-		pictures.push_back(Picture(loc,tags));
+    if (loc != "" && loc != "none") {
+      pictures.push_back(Picture(loc,tags));
+    }
 	}
 	
 	in.close();	

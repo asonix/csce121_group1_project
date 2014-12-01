@@ -61,7 +61,7 @@ Pic_window::Pic_window(Point xy,int w,int h,const string& title)
 	{
 		init_extns();
 		for (Picture p : pics)
-		{	images.push_back(get_image_pointer(p.get_location()));	}
+		{	images.push_back(get_image_pointer(p.get_location())); }
 		tagged_images = images;
 
 		// Attach and hide everything
@@ -142,7 +142,8 @@ void Pic_window::gallery()									// 22 Lines
 {
 	if (tag == ""){
 		tagged_images = images;
-		tagged_pics = pics; }
+		tagged_pics = pics;
+  }
 	masshide_home_screen();
 	massshow_gallery_screen();
 
@@ -160,6 +161,12 @@ void Pic_window::gallery()									// 22 Lines
 
 	gallery_filename.put(tagged_pics[current].get_location());
 	gallery_tags.put(tagged_pics[current].get_string_of_tags());
+  Point p = tagged_images[current]->point(0);
+  if (p.x == 100 && p.y == 100) {
+    int x = tagged_images[current]->get_width();
+    int y = tagged_images[current]->get_height();
+    tagged_images[current]->move((1000-x)/2-100, (800-y)/2-100);
+  }
 	Window::attach(*tagged_images[current]);
 	Window::redraw();
 }
@@ -202,7 +209,7 @@ void Pic_window::right()
 {
 	Window::detach(*tagged_images[current]);
 	current += 1;
-	if (current > tagged_images.size()-1) current = 1;
+  if (current > tagged_images.size()-1) current = 1;
 	gallery();
 }
 
