@@ -1,3 +1,6 @@
+
+//button.cpp
+
 #include "button.h"
 
 GoodButton::GoodButton(Point xy, int w, int h, const string& label, Callback cb) : Button(xy, w, h, label, cb) {

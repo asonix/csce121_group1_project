@@ -1,4 +1,10 @@
+
+//goodrectangle.h
+
 #include "Graph.h"
+
+#ifndef GOODRECTANGLE
+#define goodrectangle
 
 using namespace Graph_lib;
 
@@ -19,3 +25,9 @@ class GoodRectangle : public Shape {
     int width() const { return w; }
 };
 
+/* ------------------------------------------------------------------------- //
+
+Structure mimicked from Rectangle definition in Graph.h Graph.h
+
+// ------------------------------------------------------------------------- */
+#endif

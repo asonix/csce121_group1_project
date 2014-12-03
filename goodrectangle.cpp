@@ -1,3 +1,6 @@
+
+//goodrectangle.cpp
+
 #include "goodrectangle.h"
 
 GoodRectangle::GoodRectangle(Point xy, int ww, int hh) : h(hh), w(ww) {
@@ -31,3 +34,8 @@ void GoodRectangle::draw_lines() const {
   }
 }
 
+/* ------------------------------------------------------------------------- //
+
+Many lines copied from Rectangle definition in Graph.h
+
+// ------------------------------------------------------------------------- */
